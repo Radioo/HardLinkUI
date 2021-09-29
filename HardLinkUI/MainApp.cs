@@ -21,6 +21,7 @@ namespace HardLinkUI
             InitializeComponent();
             InitializeApp();
             LoadXmlList();
+            GetDBSize();
             
         }
         internal void InitializeApp()
@@ -41,6 +42,7 @@ namespace HardLinkUI
         {
             NewInstance();
             LoadXmlList();
+            GetDBSize();
         }
         public void LoadXmlList()
         {
@@ -147,6 +149,7 @@ namespace HardLinkUI
                 }
                 MessageBox.Show("Done");
                 progressBar1.Value = 0;
+                GetDBSize();
             }
             else
             {
@@ -183,6 +186,17 @@ namespace HardLinkUI
                     progressBar1.Value = 0;
                 }
             }
+        }
+        public void GetDBSize()
+        {
+            DirectoryInfo dir = new(dbDir);
+            long dbsize = 0;
+            foreach (var file in dir.EnumerateFiles())
+            {
+                dbsize = dbsize + file.Length;
+            }
+            buttonShowUnused.Text = $"Delete unused DB files\n" +
+                $"(DB size: {Math.Round(((dbsize/1024f)/1024f)/1024f, 2)} GB)";
         }
     }
 }
