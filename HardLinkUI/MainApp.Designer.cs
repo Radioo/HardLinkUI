@@ -38,6 +38,7 @@ namespace HardLinkUI
             this.buttonCopyFiles = new System.Windows.Forms.Button();
             this.folderBrowserCopyFiles = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -46,9 +47,9 @@ namespace HardLinkUI
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(12, 350);
+            this.progressBar1.Location = new System.Drawing.Point(12, 406);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(749, 25);
+            this.progressBar1.Size = new System.Drawing.Size(772, 25);
             this.progressBar1.TabIndex = 0;
             // 
             // addInstanceButton
@@ -58,7 +59,7 @@ namespace HardLinkUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.addInstanceButton.Location = new System.Drawing.Point(3, 3);
             this.addInstanceButton.Name = "addInstanceButton";
-            this.addInstanceButton.Size = new System.Drawing.Size(181, 48);
+            this.addInstanceButton.Size = new System.Drawing.Size(187, 55);
             this.addInstanceButton.TabIndex = 0;
             this.addInstanceButton.Text = "Add instance";
             this.addInstanceButton.UseVisualStyleBackColor = true;
@@ -69,9 +70,9 @@ namespace HardLinkUI
             this.hardLinkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.hardLinkButton.Location = new System.Drawing.Point(190, 3);
+            this.hardLinkButton.Location = new System.Drawing.Point(196, 3);
             this.hardLinkButton.Name = "hardLinkButton";
-            this.hardLinkButton.Size = new System.Drawing.Size(181, 48);
+            this.hardLinkButton.Size = new System.Drawing.Size(187, 55);
             this.hardLinkButton.TabIndex = 1;
             this.hardLinkButton.Text = "Make hard links";
             this.hardLinkButton.UseVisualStyleBackColor = true;
@@ -93,7 +94,7 @@ namespace HardLinkUI
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 72);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 94);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
@@ -103,7 +104,7 @@ namespace HardLinkUI
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(749, 272);
+            this.dataGridView1.Size = new System.Drawing.Size(772, 306);
             this.dataGridView1.TabIndex = 2;
             // 
             // buttonShowUnused
@@ -111,9 +112,9 @@ namespace HardLinkUI
             this.buttonShowUnused.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonShowUnused.Location = new System.Drawing.Point(377, 3);
+            this.buttonShowUnused.Location = new System.Drawing.Point(389, 3);
             this.buttonShowUnused.Name = "buttonShowUnused";
-            this.buttonShowUnused.Size = new System.Drawing.Size(181, 48);
+            this.buttonShowUnused.Size = new System.Drawing.Size(187, 55);
             this.buttonShowUnused.TabIndex = 3;
             this.buttonShowUnused.Text = "Delete unused DB files";
             this.buttonShowUnused.UseVisualStyleBackColor = true;
@@ -124,9 +125,9 @@ namespace HardLinkUI
             this.buttonCopyFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCopyFiles.Location = new System.Drawing.Point(564, 3);
+            this.buttonCopyFiles.Location = new System.Drawing.Point(582, 3);
             this.buttonCopyFiles.Name = "buttonCopyFiles";
-            this.buttonCopyFiles.Size = new System.Drawing.Size(182, 48);
+            this.buttonCopyFiles.Size = new System.Drawing.Size(187, 55);
             this.buttonCopyFiles.TabIndex = 4;
             this.buttonCopyFiles.Text = "Copy files";
             this.buttonCopyFiles.UseVisualStyleBackColor = true;
@@ -150,18 +151,28 @@ namespace HardLinkUI
             this.tableLayoutPanel1.Controls.Add(this.buttonCopyFiles, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.hardLinkButton, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonShowUnused, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 27);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(749, 54);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(772, 61);
             this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Loading...";
             // 
             // MainApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 387);
+            this.ClientSize = new System.Drawing.Size(796, 443);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
@@ -170,6 +181,7 @@ namespace HardLinkUI
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -183,6 +195,7 @@ namespace HardLinkUI
         private System.Windows.Forms.Button buttonCopyFiles;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserCopyFiles;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

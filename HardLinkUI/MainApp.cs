@@ -21,7 +21,6 @@ namespace HardLinkUI
             InitializeComponent();
             InitializeApp();
             LoadXmlList();
-            GetDBSize();
             
         }
         internal void InitializeApp()
@@ -42,19 +41,28 @@ namespace HardLinkUI
         {
             NewInstance();
             LoadXmlList();
-            GetDBSize();
         }
         public void LoadXmlList()
         {
+            label1.Text = "Loading...";
+            long savings = 0;
             DataTable xmlList = new("XmlList");
             xmlList.Columns.Add("Filename");
             xmlList.Columns.Add("Entries");
+            xmlList.Columns.Add("Size");
             DirectoryInfo xmldir = new(xmlDir);
             foreach (var file in xmldir.GetFiles())
             {
+                long size = 0;
                 DataTable tempload = new();
-                tempload.ReadXml(file.FullName);
-                xmlList.Rows.Add(file.Name, tempload.Rows.Count);
+                tempload.ReadXml(file.FullName);           
+                foreach (var row in tempload.AsEnumerable())
+                {
+                    FileInfo fi = new(dbDir + @"\" + row.Field<string>("MD5"));
+                    size += fi.Length;
+                    savings += fi.Length;
+                }
+                xmlList.Rows.Add(file.Name, tempload.Rows.Count, Math.Round(((size / 1024f) / 1024f) / 1024f, 2) + " GB");
             }
             dataGridView1.DataSource = xmlList;
             if (dataGridView1.RowCount == 0)
@@ -67,7 +75,13 @@ namespace HardLinkUI
                 buttonCopyFiles.Enabled = true;
                 hardLinkButton.Enabled = true;
             }
-            
+            DirectoryInfo dir = new(dbDir);
+            long dbsize = 0;
+            foreach (var file in dir.EnumerateFiles())
+            {
+                dbsize = dbsize + file.Length;
+            }
+            label1.Text = $"DB size: {Math.Round(((dbsize / 1024f) / 1024f) / 1024f, 2)} GB    Saved {Math.Round((((savings-dbsize)/1024f)/1024f)/1024f,2)} GB of space!";
         }
 
         private void hardLinkButton_Click(object sender, EventArgs e)
@@ -149,7 +163,6 @@ namespace HardLinkUI
                 }
                 MessageBox.Show("Done");
                 progressBar1.Value = 0;
-                GetDBSize();
             }
             else
             {
@@ -192,17 +205,6 @@ namespace HardLinkUI
                     progressBar1.Value = 0;
                 }
             }
-        }
-        public void GetDBSize()
-        {
-            DirectoryInfo dir = new(dbDir);
-            long dbsize = 0;
-            foreach (var file in dir.EnumerateFiles())
-            {
-                dbsize = dbsize + file.Length;
-            }
-            buttonShowUnused.Text = $"Delete unused DB files\n" +
-                $"(DB size: {Math.Round(((dbsize/1024f)/1024f)/1024f, 2)} GB)";
         }
     }
 }
