@@ -164,7 +164,7 @@ namespace HardLinkUI
             int entries = Convert.ToInt32(entriesVal);
             progressBar1.Maximum = entries;
             progressBar1.Step = 1;
-            var result = MessageBox.Show($"Copying files from {selXml}.\n" +
+            var result = MessageBox.Show($"Copying files from {selXml} (will not overwrite).\n" +
                 $"Proceed to selecting copy destination?", "Copy files", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -177,9 +177,15 @@ namespace HardLinkUI
                     {
                         if (row.Field<string>("FilePath") != "")
                         {
-                            Directory.CreateDirectory(folderBrowserCopyFiles.SelectedPath + row.Field<string>("FilePath"));
+                            if (!Directory.Exists(folderBrowserCopyFiles.SelectedPath + row.Field<string>("FilePath")))
+                            {
+                                Directory.CreateDirectory(folderBrowserCopyFiles.SelectedPath + row.Field<string>("FilePath"));
+                            }
                         }
-                        File.Copy(dbDir + @"\" + row.Field<string>("MD5"), folderBrowserCopyFiles.SelectedPath + row.Field<string>("FilePath") + @"\" + row.Field<string>("File"));
+                        if (!File.Exists(folderBrowserCopyFiles.SelectedPath + row.Field<string>("FilePath") + @"\" + row.Field<string>("File")))
+                        {
+                            File.Copy(dbDir + @"\" + row.Field<string>("MD5"), folderBrowserCopyFiles.SelectedPath + row.Field<string>("FilePath") + @"\" + row.Field<string>("File"));
+                        }
                         progressBar1.PerformStep();
                     }
                     MessageBox.Show("Done");
